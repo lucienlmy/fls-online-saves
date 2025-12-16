@@ -43,6 +43,35 @@
             color: #58a6ff;
         }
 
+        .lang-switcher {
+            display: flex;
+            gap: 4px;
+            background-color: #21262d;
+            border-radius: 6px;
+            padding: 4px;
+        }
+
+        .lang-btn {
+            background: none;
+            border: none;
+            color: #8b949e;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .lang-btn:hover {
+            color: #c9d1d9;
+        }
+
+        .lang-btn.active {
+            background-color: #30363d;
+            color: #f0f6fc;
+        }
+
         .github-link {
             display: flex;
             align-items: center;
@@ -215,6 +244,10 @@
 
 <header class="header">
     <a href="/">FSL Exploit</a>
+    <div class="lang-switcher">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="ru">RU</button>
+    </div>
     <a href="https://github.com/isamo09/fls-online-saves" target="_blank" class="github-link">
         <svg height="24" width="24" viewBox="0 0 16 16">
             <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
@@ -225,8 +258,8 @@
 
 <main class="container">
     <section class="section">
-        <h1>FSL Exploit</h1>
-        <p class="intro">FSL for GTA Online - redirects saves from Rockstar servers to local files, allowing you to create local saves for GTA Online.</p>
+        <h1 data-i18n="title">FSL Exploit</h1>
+        <p class="intro" data-i18n="intro">FSL for GTA Online - redirects saves from Rockstar servers to local files, allowing you to create local saves for GTA Online.</p>
     </section>
 
     <div class="warning-box">
@@ -234,34 +267,34 @@
             <svg width="16" height="16" viewBox="0 0 16 16" fill="#f0883e">
                 <path d="M8.22 1.754a.25.25 0 00-.44 0L1.698 13.132a.25.25 0 00.22.368h12.164a.25.25 0 00.22-.368L8.22 1.754zm-1.763-.707c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0114.082 15H1.918a1.75 1.75 0 01-1.543-2.575L6.457 1.047zM9 11a1 1 0 11-2 0 1 1 0 012 0zm-.25-5.25a.75.75 0 00-1.5 0v2.5a.75.75 0 001.5 0v-2.5z"/>
             </svg>
-            Important: For latest GTA versions
+            <span data-i18n="warning_title">Important: For latest GTA versions</span>
         </div>
-        <p>For <strong>GTA V Enhanced</strong> and <strong>GTA V Legacy</strong> (any latest version), use <strong>WINMM.dll</strong> instead of version.dll:</p>
+        <p data-i18n-html="warning_text">For <strong>GTA V Enhanced</strong> and <strong>GTA V Legacy</strong> (any latest version), use <strong>WINMM.dll</strong> instead of version.dll:</p>
         <div class="downloads-section">
-            <a href="https://github.com/isamo09/fls-online-saves/raw/main/FSL/WINMM.dll" class="download-btn" download>Download WINMM.dll</a>
+            <a href="https://github.com/isamo09/fls-online-saves/raw/main/FSL/WINMM.dll" class="download-btn" download data-i18n="download_winmm">Download WINMM.dll</a>
         </div>
-        <p style="margin-top: 12px; font-size: 0.9rem; color: #8b949e;">Place the file in the root folder of the game (where GTA5.exe is located).</p>
+        <p style="margin-top: 12px; font-size: 0.9rem; color: #8b949e;" data-i18n="warning_hint">Place the file in the root folder of the game (where GTA5.exe is located).</p>
     </div>
 
     <section class="section">
-        <h2>Downloads</h2>
+        <h2 data-i18n="downloads">Downloads</h2>
         <div class="downloads-section">
-            <a href="https://github.com/isamo09/fls-online-saves/raw/main/FSL/WINMM.dll" class="download-btn" download>WINMM.dll (Recommended)</a>
-            <a href="https://github.com/isamo09/fls-online-saves/raw/main/FSL/version.dll" class="download-btn secondary" download>version.dll (Old)</a>
-            <a href="https://github.com/isamo09/fls-online-saves/releases/latest/download/main.exe" class="download-btn secondary">Save Manager</a>
-            <a href="https://github.com/isamo09/fls-online-saves/raw/main/FSL/clear_saves.zip" class="download-btn secondary" download>Clean Save</a>
+            <a href="https://github.com/isamo09/fls-online-saves/raw/main/FSL/WINMM.dll" class="download-btn" download data-i18n="downloads_winmm">WINMM.dll (Recommended)</a>
+            <a href="https://github.com/isamo09/fls-online-saves/raw/main/FSL/version.dll" class="download-btn secondary" download data-i18n="downloads_version">version.dll (Old)</a>
+            <a href="https://github.com/isamo09/fls-online-saves/releases/latest/download/main.exe" class="download-btn secondary" data-i18n="downloads_manager">Save Manager</a>
+            <a href="https://github.com/isamo09/fls-online-saves/raw/main/FSL/clear_saves.zip" class="download-btn secondary" download data-i18n="downloads_clean">Clean Save</a>
         </div>
-        <p style="margin-top: 12px; font-size: 0.9rem; color: #8b949e;">If you are blocked in GTA Online, use a clean save - extract it to <code>%AppData%\FSL</code></p>
+        <p style="margin-top: 12px; font-size: 0.9rem; color: #8b949e;"><span data-i18n="downloads_hint">If you are blocked in GTA Online, use a clean save - extract it to</span> <code>%AppData%\FSL</code></p>
     </section>
 
     <section class="section">
-        <h2>Money Options</h2>
-        <p>Press <code>~</code> in GTA Online session to open console, then enter cheat code:</p>
+        <h2 data-i18n="money_title">Money Options</h2>
+        <p data-i18n-html="money_desc">Press <code>~</code> in GTA Online session to open console, then enter cheat code:</p>
         <table class="money-table">
             <thead>
                 <tr>
-                    <th>Cheat Code</th>
-                    <th>Amount Added</th>
+                    <th data-i18n="table_code">Cheat Code</th>
+                    <th data-i18n="table_amount">Amount Added</th>
                 </tr>
             </thead>
             <tbody>
@@ -294,35 +327,133 @@
     </section>
 
     <section class="section">
-        <h2>How It Works</h2>
-        <p>FSL downloads your actual online save file when no local saves are found. All subsequent save and load requests are redirected to your local hard drive. Your save data isn't stored on Rockstar's servers anymore.</p>
-        <p>All save data files are stored in <code>%APPDATA%\FSL</code>. The tool creates backups regularly, but you should maintain your own backups in a safe location.</p>
+        <h2 data-i18n="how_title">How It Works</h2>
+        <p data-i18n-html="how_text1">FSL downloads your actual online save file when no local saves are found. All subsequent save and load requests are redirected to your local hard drive. Your save data isn't stored on Rockstar's servers anymore.</p>
+        <p data-i18n-html="how_text2">All save data files are stored in <code>%APPDATA%\FSL</code>. The tool creates backups regularly, but you should maintain your own backups in a safe location.</p>
     </section>
 
     <section class="section">
-        <h2>FAQ</h2>
+        <h2 data-i18n="faq_title">FAQ</h2>
 
         <div class="faq-item">
-            <h3>Is this safe?</h3>
-            <p>This should be nearly undetectable since your saves never reach Rockstar's servers. It is recommended to use a menu with a working anti-cheat bypass when going online.</p>
+            <h3 data-i18n="faq_q1">Is this safe?</h3>
+            <p data-i18n="faq_a1">This should be nearly undetectable since your saves never reach Rockstar's servers. It is recommended to use a menu with a working anti-cheat bypass when going online.</p>
         </div>
 
         <div class="faq-item">
-            <h3>Can I edit my saves?</h3>
-            <p>There are no tools to edit save files yet. You can use CodeWalker to view them.</p>
+            <h3 data-i18n="faq_q2">Can I edit my saves?</h3>
+            <p data-i18n="faq_a2">There are no tools to edit save files yet. You can use CodeWalker to view them.</p>
         </div>
 
         <div class="faq-item">
-            <h3>Can I share my save files?</h3>
-            <p>Yes, you can share save files with other people.</p>
+            <h3 data-i18n="faq_q3">Can I share my save files?</h3>
+            <p data-i18n="faq_a3">Yes, you can share save files with other people.</p>
         </div>
     </section>
 
     <div class="info-box">
-        <div class="info-box-title">Note</div>
-        <p>This server implementation is for storing local saves in the cloud. The FSL exploit itself was developed by others. <a href="https://github.com/isamo09/fls-online-saves" target="_blank">Source code on GitHub</a>.</p>
+        <div class="info-box-title" data-i18n="note_title">Note</div>
+        <p><span data-i18n="note_text">This server implementation is for storing local saves in the cloud. The FSL exploit itself was developed by others.</span> <a href="https://github.com/isamo09/fls-online-saves" target="_blank">GitHub</a>.</p>
     </div>
 </main>
+
+<script>
+const translations = {
+    en: {
+        "title": "FSL Exploit",
+        "intro": "FSL for GTA Online - redirects saves from Rockstar servers to local files, allowing you to create local saves for GTA Online.",
+        "warning_title": "Important: For latest GTA versions",
+        "warning_text": "For <strong>GTA V Enhanced</strong> and <strong>GTA V Legacy</strong> (any latest version), use <strong>WINMM.dll</strong> instead of version.dll:",
+        "warning_hint": "Place the file in the root folder of the game (where GTA5.exe is located).",
+        "download_winmm": "Download WINMM.dll",
+        "downloads": "Downloads",
+        "downloads_winmm": "WINMM.dll (Recommended)",
+        "downloads_version": "version.dll (Old)",
+        "downloads_manager": "Save Manager",
+        "downloads_clean": "Clean Save",
+        "downloads_hint": "If you are blocked in GTA Online, use a clean save - extract it to",
+        "money_title": "Money Options",
+        "money_desc": "Press <code>~</code> in GTA Online session to open console, then enter cheat code:",
+        "table_code": "Cheat Code",
+        "table_amount": "Amount Added",
+        "how_title": "How It Works",
+        "how_text1": "FSL downloads your actual online save file when no local saves are found. All subsequent save and load requests are redirected to your local hard drive. Your save data isn't stored on Rockstar's servers anymore.",
+        "how_text2": "All save data files are stored in <code>%APPDATA%\\FSL</code>. The tool creates backups regularly, but you should maintain your own backups in a safe location.",
+        "faq_title": "FAQ",
+        "faq_q1": "Is this safe?",
+        "faq_a1": "This should be nearly undetectable since your saves never reach Rockstar's servers. It is recommended to use a menu with a working anti-cheat bypass when going online.",
+        "faq_q2": "Can I edit my saves?",
+        "faq_a2": "There are no tools to edit save files yet. You can use CodeWalker to view them.",
+        "faq_q3": "Can I share my save files?",
+        "faq_a3": "Yes, you can share save files with other people.",
+        "note_title": "Note",
+        "note_text": "This server implementation is for storing local saves in the cloud. The FSL exploit itself was developed by others."
+    },
+    ru: {
+        "title": "FSL Exploit",
+        "intro": "FSL для GTA Online - перенаправляет сохранения с серверов Rockstar на локальные файлы, позволяя создавать локальные сохранения для GTA Online.",
+        "warning_title": "Важно: Для последних версий GTA",
+        "warning_text": "Для <strong>GTA V Enhanced</strong> и <strong>GTA V Legacy</strong> (любая последняя версия) используйте <strong>WINMM.dll</strong> вместо version.dll:",
+        "warning_hint": "Поместите файл в корневую папку игры (где находится GTA5.exe).",
+        "download_winmm": "Скачать WINMM.dll",
+        "downloads": "Загрузки",
+        "downloads_winmm": "WINMM.dll (Рекомендуется)",
+        "downloads_version": "version.dll (Старая)",
+        "downloads_manager": "Менеджер сохранений",
+        "downloads_clean": "Чистое сохранение",
+        "downloads_hint": "Если вы заблокированы в GTA Online, используйте чистое сохранение - распакуйте в",
+        "money_title": "Деньги",
+        "money_desc": "Нажмите <code>~</code> в сессии GTA Online чтобы открыть консоль, затем введите чит-код:",
+        "table_code": "Чит-код",
+        "table_amount": "Сумма",
+        "how_title": "Как это работает",
+        "how_text1": "FSL загружает ваш реальный онлайн-сейв, когда локальные сохранения не найдены. Все последующие запросы на сохранение и загрузку перенаправляются на ваш локальный диск. Ваши данные больше не хранятся на серверах Rockstar.",
+        "how_text2": "Все файлы сохранений хранятся в <code>%APPDATA%\\FSL</code>. Инструмент регулярно создаёт резервные копии, но рекомендуется также делать свои копии в безопасном месте.",
+        "faq_title": "FAQ",
+        "faq_q1": "Это безопасно?",
+        "faq_a1": "Это практически необнаружимо, так как ваши сохранения никогда не попадают на сервера Rockstar. Рекомендуется использовать меню с рабочим обходом античита при выходе в онлайн.",
+        "faq_q2": "Могу ли я редактировать сохранения?",
+        "faq_a2": "Пока нет инструментов для редактирования файлов сохранений. Вы можете использовать CodeWalker для их просмотра.",
+        "faq_q3": "Могу ли я поделиться сохранениями?",
+        "faq_a3": "Да, вы можете делиться файлами сохранений с другими людьми.",
+        "note_title": "Примечание",
+        "note_text": "Эта серверная реализация предназначена для хранения локальных сохранений в облаке. Сам эксплойт FSL был разработан другими людьми."
+    }
+};
+
+let currentLang = localStorage.getItem('lang') || 'en';
+
+function setLanguage(lang) {
+    currentLang = lang;
+    localStorage.setItem('lang', lang);
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.lang === lang);
+    });
+
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang][key]) {
+            el.textContent = translations[lang][key];
+        }
+    });
+
+    document.querySelectorAll('[data-i18n-html]').forEach(el => {
+        const key = el.getAttribute('data-i18n-html');
+        if (translations[lang][key]) {
+            el.innerHTML = translations[lang][key];
+        }
+    });
+
+    document.documentElement.lang = lang === 'ru' ? 'ru' : 'en';
+}
+
+document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
+});
+
+setLanguage(currentLang);
+</script>
 
 </body>
 </html>
