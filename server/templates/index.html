@@ -3,188 +3,326 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FSL Exploit Overview</title>
+    <title>FSL Exploit</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        * {
             margin: 0;
             padding: 0;
-            overflow: hidden;
-            color: #fff;
-        }
-        .container {
-            position: relative;
-            width: 100vw;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-        .header {
-            width: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            padding: 10px;
-            text-align: center;
-            z-index: 1000;
-        }
-        .header button {
-            background: #fff;
-            color: #333;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin: 0 5px;
-            font-weight: bold;
-        }
-        .header button:hover {
-            background: #ff6347;
-            color: #fff;
-        }
-        .section {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
             box-sizing: border-box;
-            opacity: 0;
-            transform: translateY(100px);
-            transition: all 1s ease;
         }
-        .section.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        #section1 { background: linear-gradient(120deg, #4b0082, #000); }
-        #section2 { background: linear-gradient(120deg, #8a2be2, #0000ff); }
-        #section3 { background: linear-gradient(120deg, #0000ff, #ff4500); }
-        #section4 { background: linear-gradient(120deg, #ff4500, #ff8c00); }
-        #section6 { background: linear-gradient(120deg, #4b0082, #000); }
-        #section5 {
-            background: linear-gradient(120deg, #ff00ff, #00ffff, #ff4500, #ffff00);
-            background-size: 300% 300%;
-            animation: gradientShift 15s ease infinite;
-        }
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        h1, h2, p {
-            text-align: center;
-        }
-        p {
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background-color: #0d1117;
+            color: #c9d1d9;
             line-height: 1.6;
+            min-height: 100vh;
         }
-        a {
-            color: #ff6347;
+
+        .header {
+            background-color: #161b22;
+            border-bottom: 1px solid #30363d;
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header a {
+            color: #c9d1d9;
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 600;
+            font-size: 18px;
+            transition: color 0.2s;
         }
-        a:hover {
-            text-decoration: underline;
+
+        .header a:hover {
+            color: #58a6ff;
+        }
+
+        .github-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .github-link svg {
+            fill: #c9d1d9;
+            transition: fill 0.2s;
+        }
+
+        .github-link:hover svg {
+            fill: #58a6ff;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+
+        h1 {
+            color: #f0f6fc;
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+        }
+
+        h2 {
+            color: #f0f6fc;
+            font-size: 1.5rem;
+            margin-top: 40px;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #30363d;
+        }
+
+        p {
+            margin-bottom: 16px;
+        }
+
+        .warning-box {
+            background-color: #341a00;
+            border: 1px solid #9e6a03;
+            border-radius: 6px;
+            padding: 16px;
+            margin: 24px 0;
+        }
+
+        .warning-box-title {
+            color: #f0883e;
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .info-box {
+            background-color: #0c2d6b;
+            border: 1px solid #1f6feb;
+            border-radius: 6px;
+            padding: 16px;
+            margin: 24px 0;
+        }
+
+        .info-box-title {
+            color: #58a6ff;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background-color: #238636;
+            color: #ffffff;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.2s;
+            margin: 4px;
+        }
+
+        .download-btn:hover {
+            background-color: #2ea043;
+        }
+
+        .download-btn.secondary {
+            background-color: #21262d;
+            border: 1px solid #30363d;
+        }
+
+        .download-btn.secondary:hover {
+            background-color: #30363d;
+        }
+
+        .money-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            background-color: #161b22;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .money-table th,
+        .money-table td {
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid #30363d;
+        }
+
+        .money-table th {
+            background-color: #21262d;
+            color: #f0f6fc;
+            font-weight: 600;
+        }
+
+        .money-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .money-table tr:hover td {
+            background-color: #1c2128;
+        }
+
+        .money-table code {
+            background-color: #30363d;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            color: #79c0ff;
+        }
+
+        .faq-item {
+            margin-bottom: 24px;
+        }
+
+        .faq-item h3 {
+            color: #f0f6fc;
+            margin-bottom: 8px;
+        }
+
+        code {
+            background-color: #30363d;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Consolas', 'Monaco', monospace;
+        }
+
+        a {
+            color: #58a6ff;
+        }
+
+        .downloads-section {
+            margin-top: 16px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .intro {
+            font-size: 1.1rem;
+            color: #8b949e;
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <div class="header">
-        <button onclick="showSection(1)">Home</button>
-        <button onclick="showSection(2)">Technical Details</button>
-        <button onclick="showSection(3)">Cheat money</button>
-        <button onclick="showSection(4)">Frequently asked questions</button>
-        <button onclick="showSection(5)">Further Reading and Resources</button>
-        <button onclick="showSection(6)">DOWNLOAD</button>
-    </div>
+<header class="header">
+    <a href="/">FSL Exploit</a>
+    <a href="https://github.com/isamo09/fls-online-saves" target="_blank" class="github-link">
+        <svg height="24" width="24" viewBox="0 0 16 16">
+            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+        </svg>
+        GitHub
+    </a>
+</header>
 
-    <div id="section1" class="section active">
-        <div>
-            <h1>FSL Exploit Overview</h1>
-            <h2>FSL for GTA Online</h2>
-            <p>The FSL exploit was developed in Poland and published on the forum, its essence is to redirect saves from Rockstar servers to a local file, thereby allowing you to make local saves for GTA online
-</p>
+<main class="container">
+    <section class="section">
+        <h1>FSL Exploit</h1>
+        <p class="intro">FSL for GTA Online - redirects saves from Rockstar servers to local files, allowing you to create local saves for GTA Online.</p>
+    </section>
+
+    <div class="warning-box">
+        <div class="warning-box-title">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="#f0883e">
+                <path d="M8.22 1.754a.25.25 0 00-.44 0L1.698 13.132a.25.25 0 00.22.368h12.164a.25.25 0 00.22-.368L8.22 1.754zm-1.763-.707c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0114.082 15H1.918a1.75 1.75 0 01-1.543-2.575L6.457 1.047zM9 11a1 1 0 11-2 0 1 1 0 012 0zm-.25-5.25a.75.75 0 00-1.5 0v2.5a.75.75 0 001.5 0v-2.5z"/>
+            </svg>
+            Important: For latest GTA versions
         </div>
-    </div>
-
-    <div id="section2" class="section">
-        <div>
-            <h2>Technical Details</h2>
-            <p>Saves
-
-FSL will attempt to download your actual online save file when no local saves are found. All subsequent save and load requests will be redirected to your local hard drive. This means that your save data isn’t stored in Rockstar’s servers anymore; you would use your actual online save when you disable FSL, and your local save when you enable it again
-
-All save data files are stored in %APPDATA%/FSL. While the tool creates backups regularly, you are strongly advised to maintain your own backups in a safe location. Be aware that everything inside %APPDATA% will be wiped during a Windows reset
-</p>
+        <p>For <strong>GTA V Enhanced</strong> and <strong>GTA V Legacy</strong> (any latest version), use <strong>WINMM.dll</strong> instead of version.dll:</p>
+        <div class="downloads-section">
+            <a href="https://github.com/isamo09/fls-online-saves/raw/main/FSL/WINMM.dll" class="download-btn" download>Download WINMM.dll</a>
         </div>
+        <p style="margin-top: 12px; font-size: 0.9rem; color: #8b949e;">Place the file in the root folder of the game (where GTA5.exe is located).</p>
     </div>
 
-    <div id="section3" class="section">
-        <div>
-            <h2>Cheat money</h2>
-            <p>FSL allows you to earn money in the local save of GTA online; for this you need to enter the cheat code on ~
-here is the list of codes: 1M: Adds $1M 10M: Adds $10M 100M: Adds $100M 1B: Adds $1B 10B: Adds $10B</p>
+    <section class="section">
+        <h2>Downloads</h2>
+        <div class="downloads-section">
+            <a href="https://github.com/isamo09/fls-online-saves/raw/main/FSL/WINMM.dll" class="download-btn" download>WINMM.dll (Recommended)</a>
+            <a href="https://github.com/isamo09/fls-online-saves/raw/main/FSL/version.dll" class="download-btn secondary" download>version.dll (Old)</a>
+            <a href="https://github.com/isamo09/fls-online-saves/releases/latest/download/main.exe" class="download-btn secondary">Save Manager</a>
+            <a href="https://github.com/isamo09/fls-online-saves/raw/main/FSL/clear_saves.zip" class="download-btn secondary" download>Clean Save</a>
         </div>
-    </div>
+        <p style="margin-top: 12px; font-size: 0.9rem; color: #8b949e;">If you are blocked in GTA Online, use a clean save - extract it to <code>%AppData%\FSL</code></p>
+    </section>
 
-    <div id="section4" class="section">
-        <div>
-            <h2>Frequently asked questions</h2>
+    <section class="section">
+        <h2>Money Options</h2>
+        <p>Press <code>~</code> in GTA Online session to open console, then enter cheat code:</p>
+        <table class="money-table">
+            <thead>
+                <tr>
+                    <th>Cheat Code</th>
+                    <th>Amount Added</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>1M</code></td>
+                    <td>$1,000,000</td>
+                </tr>
+                <tr>
+                    <td><code>2M</code></td>
+                    <td>$2,000,000</td>
+                </tr>
+                <tr>
+                    <td><code>10M</code></td>
+                    <td>$10,000,000</td>
+                </tr>
+                <tr>
+                    <td><code>100M</code></td>
+                    <td>$100,000,000</td>
+                </tr>
+                <tr>
+                    <td><code>1B</code></td>
+                    <td>$1,000,000,000</td>
+                </tr>
+                <tr>
+                    <td><code>10B</code></td>
+                    <td>$10,000,000,000</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section class="section">
+        <h2>How It Works</h2>
+        <p>FSL downloads your actual online save file when no local saves are found. All subsequent save and load requests are redirected to your local hard drive. Your save data isn't stored on Rockstar's servers anymore.</p>
+        <p>All save data files are stored in <code>%APPDATA%\FSL</code>. The tool creates backups regularly, but you should maintain your own backups in a safe location.</p>
+    </section>
+
+    <section class="section">
+        <h2>FAQ</h2>
+
+        <div class="faq-item">
             <h3>Is this safe?</h3>
-            <p>This should be (nearly) undetectable since your saves never reach Rockstar’s servers. That doesn’t stop them from trying to sig this tool, so it is recommended to load a menu with a working anti-cheat bypass whenever you go online</p>
+            <p>This should be nearly undetectable since your saves never reach Rockstar's servers. It is recommended to use a menu with a working anti-cheat bypass when going online.</p>
+        </div>
+
+        <div class="faq-item">
             <h3>Can I edit my saves?</h3>
-            <p>There are no tools to edit save files yet. You can, however, use CodeWalker to view them</p>
-            <h3>Can I share my save files with other people?</h3>
-            <p>Yes</p>
-
+            <p>There are no tools to edit save files yet. You can use CodeWalker to view them.</p>
         </div>
-    </div>
 
-    <div id="section5" class="section">
-        <div>
-            <h2>Further Reading and Resources</h2>
-            <p>I implemented a server for storing local saves in the cloud, I have nothing to do with the development of the exploit itself <a href="https://github.com/isamo09/fls-online-saves" target="_blank">Here is the source code of the server and client GitHub</a>. Additional resources and documentation can be found there.</p>
-            <p>https://github.com/isamo09/fls-online-saves/</p>
+        <div class="faq-item">
+            <h3>Can I share my save files?</h3>
+            <p>Yes, you can share save files with other people.</p>
         </div>
+    </section>
+
+    <div class="info-box">
+        <div class="info-box-title">Note</div>
+        <p>This server implementation is for storing local saves in the cloud. The FSL exploit itself was developed by others. <a href="https://github.com/isamo09/fls-online-saves" target="_blank">Source code on GitHub</a>.</p>
     </div>
-
-    <div id="section6" class="section">
-        <div>
-            <h2>Download</h2>
-            <p>to run the exploit you need to put the <a href="https://github.com/isamo09/fls-online-saves/raw/main/FSL/version.dll" target="_blank">version.dll</a> file in the root of the game folder, you can also use the <a href="https://github.com/isamo09/fls-online-saves/releases/latest/download/main.exe" target="_blank">save manager</a> if you wish </p>
-            <p>if you are blocked in GTA Online or for any other reason you cannot load your save, use a <a href="https://github.com/isamo09/fls-online-saves/raw/main/FSL/clear_saves.zip" target="_blank">clean save</a> extract it to %AppData%\Roaming\FSL</p>
-            <p>I implemented a server for storing local saves in the cloud, I have nothing to do with the development of the exploit itself <a href="https://github.com/isamo09/fls-online-saves" target="_blank">Here is the source code of the server and client GitHub</a>
-        </div>
-    </div>
-</div>
-
-<script>
-    let currentSection = 1;
-
-    function showSection(section) {
-        document.querySelector(`#section${currentSection}`).classList.remove('active');
-        currentSection = section;
-        document.querySelector(`#section${currentSection}`).classList.add('active');
-    }
-
-    document.addEventListener('wheel', function(event) {
-        if (event.deltaY > 0 && currentSection < 5) {
-            showSection(currentSection + 1);
-        } else if (event.deltaY < 0 && currentSection > 1) {
-            showSection(currentSection - 1);
-        }
-    });
-
-    document.addEventListener('keydown', function(event) {
-        if (event.key === 'ArrowRight' && currentSection < 5) {
-            showSection(currentSection + 1);
-        } else if (event.key === 'ArrowLeft' && currentSection > 1) {
-            showSection(currentSection - 1);
-        }
-    });
-</script>
+</main>
 
 </body>
 </html>

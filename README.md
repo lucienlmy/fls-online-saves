@@ -1,19 +1,44 @@
-# fls-online-saves
-client and server for storing local FLS saves for gta Online
+# FSL Online Saves
 
-adding money to gta online and local saves allowing you to bypass the ban, more details http://fsl.pythonanywhere.com
+Client and server for storing local FSL saves for GTA Online.
 
-to activate FSL copy [WINMM.dll](FSL/WINMM.dll) to the root folder of game 
+Adding money to GTA Online and local saves allowing you to bypass the ban. More details: http://fsl.pythonanywhere.com
+
+## Installation
 
 > [!WARNING]
-> use [WINMM.dll](FSL/WINMM.dll) for lasted GTA version,
-> [version.dll](FSL/version.dll) - outdated FSL version
+> **For GTA V Enhanced and GTA V Legacy (latest versions)**, use [WINMM.dll](FSL/WINMM.dll)
+>
+> [version.dll](FSL/version.dll) is outdated and may not work with newer game versions.
 
-> [!TIP]
-> money cheat: log into the gta online session, click on ~ and enter the cheat code: 1M - adds 1 million to your balance
-> 10M - 10 million
-> 1B adds 1 trillion
-> 10B 10 trillion
+Copy [WINMM.dll](https://github.com/isamo09/fls-online-saves/raw/main/FSL/WINMM.dll) to the root folder of the game (where GTA5.exe is located).
+
+## Money Cheats
+
+Press `~` in GTA Online session to open console, then enter a cheat code:
+
+| Cheat Code | Amount Added |
+|------------|--------------|
+| `1M` | $1,000,000 |
+| `2M` | $2,000,000 |
+| `10M` | $10,000,000 |
+| `100M` | $100,000,000 |
+| `1B` | $1,000,000,000 |
+| `10B` | $10,000,000,000 |
+
+## Downloads
+
+- [WINMM.dll](https://github.com/isamo09/fls-online-saves/raw/main/FSL/WINMM.dll) - For latest GTA versions (Recommended)
+- [version.dll](https://github.com/isamo09/fls-online-saves/raw/main/FSL/version.dll) - Old version
+- [Save Manager](https://github.com/isamo09/fls-online-saves/releases/latest/download/main.exe) - Cloud save manager
+- [Clean Save](https://github.com/isamo09/fls-online-saves/raw/main/FSL/clear_saves.zip) - Extract to `%AppData%\FSL` if blocked
+
+## How It Works
+
+FSL redirects save requests from Rockstar servers to local files. All save data is stored in `%APPDATA%\FSL`.
 
 > [!NOTE]
-> you can't be banned because your save will never reach the rockstar servers
+> You can't be banned because your saves never reach the Rockstar servers.
+
+> [!TIP]
+> Maintain your own backups - everything in `%APPDATA%` will be wiped during a Windows reset.

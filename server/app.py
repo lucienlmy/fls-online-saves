@@ -1,9 +1,12 @@
 from flask import Flask, request, jsonify, send_file, render_template
+
 import json
 import os
 import hashlib
 import uuid
+
 from datetime import datetime
+
 
 app = Flask(__name__)
 
